@@ -4,7 +4,7 @@
 
 ## Live Demo
 
-**[https://online-assessment-platform.vercel.app](https://online-assessment-platform.vercel.app)**
+**[https://i-bos-interview-task-172d.vercel.app](https://i-bos-interview-task-172d.vercel.app)**
 
 ## Video Walkthrough
 
@@ -76,7 +76,7 @@
 ### Installation
 
 ```bash
-git clone https://github.com/username/online-assessment-platform.git
+git clone https://github.com/Piash-Akbar/iBOS-Interview-Task.git
 cd online-assessment-platform
 npm install
 ```
