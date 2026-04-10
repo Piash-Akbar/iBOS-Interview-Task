@@ -137,6 +137,7 @@ export function QuestionsStep() {
         }}
         editQuestion={editingQuestion}
         onSave={handleSave}
+        onDelete={handleRemove}
         questionNumber={
           editingQuestion
             ? questions.findIndex((q) => q.id === editingQuestion.id) + 1

@@ -27,6 +27,7 @@ interface QuestionModalProps {
   onClose: () => void;
   editQuestion?: DraftQuestion;
   onSave: (question: DraftQuestion, addMore: boolean) => void;
+  onDelete?: (id: string) => void;
   questionNumber: number;
 }
 
@@ -49,6 +50,7 @@ export function QuestionModal({
   onClose,
   editQuestion,
   onSave,
+  onDelete,
   questionNumber,
 }: QuestionModalProps) {
   const [title, setTitle] = useState("");
@@ -134,6 +136,9 @@ export function QuestionModal({
   };
 
   const handleDelete = () => {
+    if (editQuestion && onDelete) {
+      onDelete(editQuestion.id);
+    }
     onClose();
   };
 
@@ -251,7 +256,7 @@ export function QuestionModal({
                 className="flex items-center gap-1.5 text-sm text-primary hover:underline font-medium"
               >
                 <Plus className="size-3.5" />
-                Another options
+                Add another option
               </button>
             </div>
           )}

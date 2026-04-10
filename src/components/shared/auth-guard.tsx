@@ -12,9 +12,24 @@ interface AuthGuardProps {
 export function AuthGuard({ children, requiredRole }: AuthGuardProps) {
   const router = useRouter();
   const { isAuthenticated, user } = useAuthStore();
+  const [hydrated, setHydrated] = useState(false);
   const [checked, setChecked] = useState(false);
 
+  // Wait for Zustand persist to hydrate from localStorage
   useEffect(() => {
+    if (useAuthStore.persist.hasHydrated()) {
+      setHydrated(true);
+    } else {
+      const unsub = useAuthStore.persist.onFinishHydration(() =>
+        setHydrated(true)
+      );
+      return unsub;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated) return;
+
     if (!isAuthenticated || user?.role !== requiredRole) {
       const loginPath =
         requiredRole === "employer"
@@ -24,7 +39,7 @@ export function AuthGuard({ children, requiredRole }: AuthGuardProps) {
     } else {
       setChecked(true);
     }
-  }, [isAuthenticated, user, requiredRole, router]);
+  }, [hydrated, isAuthenticated, user, requiredRole, router]);
 
   if (!checked) {
     return (

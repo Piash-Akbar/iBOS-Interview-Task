@@ -80,8 +80,13 @@ export default function ExamPage() {
     onError: (error: unknown) => {
       setIsSubmitting(false);
       isSubmittingRef.current = false;
-      const message =
-        error instanceof Error ? error.message : "Failed to submit exam";
+      let message = "Failed to submit exam";
+      if (error && typeof error === "object" && "response" in error) {
+        const axiosErr = error as { response?: { data?: { error?: string } } };
+        message = axiosErr.response?.data?.error ?? message;
+      } else if (error instanceof Error) {
+        message = error.message;
+      }
       toast.error(message);
     },
   });

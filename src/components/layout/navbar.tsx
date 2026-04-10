@@ -39,11 +39,11 @@ export function Navbar({ title }: NavbarProps) {
       <div className="flex h-16 items-center justify-between border-b bg-white px-6">
         <div className="flex items-center gap-6">
           <Image
-            src="/logo.png"
+            src="/logo.svg"
             alt="Akij Resource"
-            width={120}
+            width={140}
             height={40}
-            className="w-[120px] h-auto"
+            className="w-[140px] h-auto"
             priority
           />
           <span className="font-medium text-gray-700">{title}</span>

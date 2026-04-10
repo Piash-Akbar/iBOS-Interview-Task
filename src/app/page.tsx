@@ -6,10 +6,10 @@ export default function Home() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#f5f5f7]">
       <div className="flex flex-col items-center gap-8 rounded-xl bg-white p-12 shadow-sm">
         <Image
-          src="/logo.png"
+          src="/logo.svg"
           alt="Akij Resource"
-          width={180}
-          height={60}
+          width={200}
+          height={50}
           className="h-auto"
           priority
         />

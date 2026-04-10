@@ -11,11 +11,11 @@ export default function AuthLayout({
       <header>
         <div className="flex h-16 items-center bg-white px-6">
           <Image
-            src="/logo.png"
+            src="/logo.svg"
             alt="Akij Resource"
-            width={120}
+            width={140}
             height={40}
-            className="w-[120px] h-auto"
+            className="w-[140px] h-auto"
             priority
           />
           <div className="flex-1 text-center">
@@ -28,7 +28,7 @@ export default function AuthLayout({
         <div className="h-[3px] bg-gradient-to-r from-violet-600 to-indigo-600" />
       </header>
 
-      <main className="flex flex-1 items-center justify-center bg-[#f5f5f7] p-4">
+      <main className="flex flex-1 items-center justify-center bg-[#f5f5f7] px-4 py-8">
         {children}
       </main>
 

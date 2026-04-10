@@ -11,7 +11,15 @@ export function useExamTimer(
   const onTimeoutRef = useRef(onTimeout);
   onTimeoutRef.current = onTimeout;
 
+  // Reset timeLeft when durationMinutes changes (e.g. after exam data loads)
   useEffect(() => {
+    setTimeLeft(durationMinutes * 60);
+  }, [durationMinutes]);
+
+  useEffect(() => {
+    // Don't start timer until we have a valid duration
+    if (durationMinutes <= 0) return;
+
     intervalRef.current = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {

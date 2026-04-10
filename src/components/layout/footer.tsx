@@ -8,11 +8,11 @@ export function Footer() {
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-300">Powered by</span>
           <Image
-            src="/logo.png"
+            src="/logo-white.svg"
             alt="Akij Resource"
-            width={100}
+            width={120}
             height={32}
-            className="w-[100px] h-auto brightness-200"
+            className="w-[120px] h-auto"
           />
         </div>
 
