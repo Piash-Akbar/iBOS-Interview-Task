@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Footer } from "@/components/layout/footer";
 
 export default function AuthLayout({
@@ -23,7 +24,12 @@ export default function AuthLayout({
               Akij Resource
             </span>
           </div>
-          <div className="w-[120px]" />
+          <Link
+            href="/signup"
+            className="inline-flex h-9 items-center justify-center rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            Sign Up
+          </Link>
         </div>
         <div className="h-[3px] bg-gradient-to-r from-violet-600 to-indigo-600" />
       </header>
