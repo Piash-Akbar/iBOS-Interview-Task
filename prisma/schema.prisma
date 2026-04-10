@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id       String @id @default(cuid())
+  email    String @unique
+  password String
+  name     String
+  refId    String @unique
+  role     String // "employer" | "candidate"
+
+  createdExams Exam[]
+  submissions  ExamSubmission[]
+}
+
+model Exam {
+  id               String   @id @default(cuid())
+  title            String
+  totalCandidates  Int
+  totalSlots       Int
+  totalQuestionSet Int
+  questionType     String // "MCQ" | "Checkbox" | "Text" | "Mixed"
+  startTime        DateTime
+  endTime          DateTime
+  duration         Int // minutes per slot
+  negativeMarking  Float    @default(0)
+  createdAt        DateTime @default(now())
+
+  creatorId String
+  creator   User @relation(fields: [creatorId], references: [id])
+
+  questions   Question[]
+  submissions ExamSubmission[]
+}
+
+model Question {
+  id      String @id @default(cuid())
+  title   String // rich text HTML
+  type    String // "MCQ" | "Checkbox" | "Text"
+  options String @default("[]") // JSON array of {label, text, isCorrect}
+  score   Int    @default(1)
+  order   Int
+
+  examId String
+  exam   Exam   @relation(fields: [examId], references: [id], onDelete: Cascade)
+}
+
+model ExamSubmission {
+  id              String   @id @default(cuid())
+  answers         String   @default("{}") // JSON: Record<questionId, answer>
+  score           Float?
+  tabSwitches     Int      @default(0)
+  fullscreenExits Int      @default(0)
+  autoSubmitted   Boolean  @default(false)
+  submittedAt     DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+  examId String
+  exam   Exam   @relation(fields: [examId], references: [id])
+
+  @@unique([userId, examId])
+}
