@@ -8,7 +8,7 @@
 
 ## Video Walkthrough
 
-**[Watch on Loom](https://loom.com)** _(link to be updated)_
+**[Watch Video Walkthrough](https://drive.google.com/drive/folders/1051fobRaJrxGWDpufngGPXqn38a23plI?usp=drive_link)**
 
 ---
 
